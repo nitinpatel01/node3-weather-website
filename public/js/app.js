@@ -4,7 +4,7 @@ const weatherForm = document.querySelector('#weatherForm');
 const search = document.querySelector('#search');
 let messageOne = document.querySelector('#messageOne');
 let messageTwo = document.querySelector('#messageTwo');
-
+ 
 weatherForm.addEventListener('submit', (e) => {
     e.preventDefault();
     getWeatherData(search.value);
