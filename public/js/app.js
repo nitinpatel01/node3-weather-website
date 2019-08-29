@@ -13,7 +13,7 @@ weatherForm.addEventListener('submit', (e) => {
 const getWeatherData = (location) => {
     messageOne.textContent = 'Loading...';
     messageTwo.textContent = '';
-    const weatherApiUrl = 'http://localhost:3000/weather?address=' + encodeURIComponent(location);
+    const weatherApiUrl = '/weather?address=' + encodeURIComponent(location);
     fetch(weatherApiUrl).then((response) => {
         response.json().then((data) => {
             if(data.error) {
