@@ -2,8 +2,10 @@ console.log('Client side JS file loaded');
 
 const weatherForm = document.querySelector('#weatherForm');
 const search = document.querySelector('#search');
-let messageOne = document.querySelector('#messageOne');
-let messageTwo = document.querySelector('#messageTwo');
+let forecastSummary = document.querySelector('#forecastSummary');
+let forecastLocation = document.querySelector('#forecastLocation');
+let temperatureHigh = document.querySelector('#temperatureHigh');
+let temperatureLow = document.querySelector('#temperatureLow');
  
 weatherForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -11,16 +13,22 @@ weatherForm.addEventListener('submit', (e) => {
 });
 
 const getWeatherData = (location) => {
-    messageOne.textContent = 'Loading...';
-    messageTwo.textContent = '';
+    forecastLocation.textContent = 'Loading...';
+    errorMessage.textContent = '';
     const weatherApiUrl = '/weather?address=' + encodeURIComponent(location);
     fetch(weatherApiUrl).then((response) => {
         response.json().then((data) => {
             if(data.error) {
-                messageOne.textContent = data.error;
+                errorMessage.textContent = data.error;
+                forecastLocation.textContent = '';
+                forecastSummary.textContent = '';
+                temperatureHigh.textContent = '';
+                temperatureLow.textContent = '';
             } else {
-                messageOne.textContent = data.location;
-                messageTwo.textContent = data.forecast;
+                forecastLocation.textContent = data.location;
+                forecastSummary.textContent = data.forecastSummary;
+                temperatureHigh.textContent = data.temperatureHigh;
+                temperatureLow.textContent = data.temperatureLow;
             }
         });
     });

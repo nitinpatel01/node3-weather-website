@@ -18,7 +18,14 @@ const forecast = (latitude, longitude, callback) => {
             const summary = body.daily.data[0].summary;
             const temperature = body.currently.temperature;
             const precipProbability = body.currently.precipProbability;
-            const forecast = summary + ' It is currently ' + temperature + ' degress out. There is a ' + precipProbability + '% chance of rain.';
+            const temperatureHigh = 'Highest temperature of the day is going to be around ' + body.daily.data[0].temperatureHigh + ' degrees.';
+            const temperatureLow = 'Lowest temperature of the day is going to be around ' + body.daily.data[0].temperatureLow + ' degrees.';
+            const forecastSummary = summary + ' It is currently ' + temperature + ' degress out. There is a ' + precipProbability + '% chance of rain.';
+            const forecast = {
+                forecastSummary,
+                temperatureHigh,
+                temperatureLow
+            };
             callback (undefined, forecast);
         }
     });
